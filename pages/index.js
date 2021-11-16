@@ -21,19 +21,24 @@ export default function Home({ exploreData }) {
           <h2 className="text-4xl font-semibold pb-5">Explore Nearby</h2>
 
           {/* pull some data from a server */}
-          {exploreData?.map((item) => (
-            <SmallCard
-              key={item.img}
-              img={item.img}
-              distance={item.distance}
-              location={item.location} 
-            />
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {exploreData?.map((item) => (
+              <SmallCard
+                key={item.img}
+                img={item.img}
+                distance={item.distance}
+                location={item.location}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-4xl font-semibold py-8">Live Anywhere</h2>
         </section>
       </main>
-
     </div>
-  )
+  );
 }
 
 export async function getStaticProps(){
