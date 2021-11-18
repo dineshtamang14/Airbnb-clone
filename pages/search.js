@@ -1,15 +1,15 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useRouter } from "next/dist/client/router";
-import {format} from "date-fns";
+import { format } from "date-fns";
 import InfoCard from "../components/InfoCard";
 
-function Search({ searchResult }) {
+function Search({ searchResults }) {
     const router = useRouter();
 
     const {location, startDate, endDate, noOfGuests} = router.query;
-    const formattedStartDate = format(new Date(startDate), "dd MMM yy");
-    const formattedEndDate = format(new Date(endDate), "dd MMM yy");
+    const formattedStartDate = format(new Date(startDate), "dd MMMM yy");
+    const formattedEndDate = format(new Date(endDate), "dd MMMM yy");
     const range = `${formattedStartDate} - ${formattedEndDate}`;
 
     return (
@@ -34,7 +34,7 @@ function Search({ searchResult }) {
             </div>
 
             <div className="flex flex-col">
-              {searchResult.map((item) => (
+              {searchResults.map(item => (
                 <InfoCard
                   key={item.img}
                   img={item.img}
@@ -57,15 +57,15 @@ function Search({ searchResult }) {
 
 export default Search;
 
-export async function getSeverSideProps(){
-    const searchResult = await fetch("https://links.papareact.com/isz")
+export async function getSeverSideProps() {
+    const searchResults = await fetch("https://links.papareact.com/isz")
     .then(
         (res) => res.json()
     );
 
     return {
         props: {
-            searchResult,
+            searchResults,
         }
     }
 }
