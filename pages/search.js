@@ -57,12 +57,11 @@ function Search({ searchResults }) {
 
 export default Search;
 
-export async function getSeverSideProps() {
+export async function getServerSideProps(){
     const searchResults = await fetch("https://links.papareact.com/isz")
     .then(
         (res) => res.json()
     );
-
     return {
         props: {
             searchResults,
