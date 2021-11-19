@@ -8,6 +8,7 @@ function Search({ searchResults }) {
     const router = useRouter();
 
     const {location, startDate, endDate, noOfGuests} = router.query;
+    console.log(router.query);
     const formattedStartDate = format(new Date(startDate), "dd MMMM yy");
     const formattedEndDate = format(new Date(endDate), "dd MMMM yy");
     const range = `${formattedStartDate} - ${formattedEndDate}`;
@@ -34,16 +35,16 @@ function Search({ searchResults }) {
             </div>
 
             <div className="flex flex-col">
-              {searchResults.map(item => (
+              {searchResults?.map(({img, location, title, description, star, price, total}) => (
                 <InfoCard
-                  key={item.img}
-                  img={item.img}
-                  location={item.location}
-                  title={item.title}
-                  description={item.description}
-                  star={item.star}
-                  price={item.price}
-                  total={item.total}
+                  key={img}
+                  img={img}
+                  location={location}
+                  title={title}
+                  description={description}
+                  star={star}
+                  price={price}
+                  total={total}
                 />
               ))}
             </div>
