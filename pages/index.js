@@ -81,13 +81,13 @@ export default function Home({ exploreData, cardsData }) {
   );
 }
 
-export async function getStaticProps(){
-  const exploreData = await fetch("https://links.papareact.com/pyp")
+export async function getServerSideProps(context){
+  const exploreData = await fetch("https://www.jsonkeeper.com/b/4G1G")
   .then(
     (res) => res.json()
   );
 
-  const cardsData = await fetch("https://links.papareact.com/zp1").
+  const cardsData = await fetch("https://www.jsonkeeper.com/b/VHHT").
   then(
     (res)=> res.json()
     );
